@@ -33,6 +33,12 @@ public class GenericUpdateQuery implements  SQLUpdateQuery {
 
     @Override
     public String build() {
+        if (Objects.equals(this.updateClause, "")) {
+            return "ERROR: NO TABLE GIVEN TO BE UPDATED";
+        }
+        if (Objects.equals(this.setClause, "")) {
+            return "ERROR: NOTHING PROVIDED TO BE UPDATED";
+        }
         return "UPDATE " + this.updateClause + " SET " + this.setClause + (!Objects.equals(this.whereCondition, "") ? " WHERE " + this.whereCondition : "") + ";";
     }
 }

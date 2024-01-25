@@ -1,5 +1,6 @@
 import java.util.Objects;
 
+
 public class GenericSelectQuery implements SQLSelectQuery{
     protected String selectClause;
     protected String fromClause;
@@ -109,14 +110,25 @@ public class GenericSelectQuery implements SQLSelectQuery{
         } else {
             query += this.selectClause;
         }
+        if (Objects.equals(this.fromClause, "")) {
+            return "ERROR: NO TABLE GIVEN TO BE READ";
+        }
         query += " FROM " + this.fromClause;
         if (!Objects.equals(this.joinedTable, "") && ((!Objects.equals(this.tableOneField, "")) && (!Objects.equals(this.tableTwoField, "")))) {
             query += " INNER JOIN " + this.joinedTable + " ON " + this.fromClause + "." + this.tableOneField + " = " + this.joinedTable + "." + this.tableTwoField;
+        } else {
+            return "ERROR: INVALID JOIN";
         }
         if (!Objects.equals(this.whereCondition, "")) {
             query += " WHERE " + this.whereCondition;
         }
+
         if (!Objects.equals(this.groupByClause, "")) {
+            String [] selectedParams = this.selectClause.split(", ");
+            String [] groupByParams = this.groupByClause.split(", ");
+            if (!ArrayComparison.allElementsPresent(selectedParams, groupByParams)) {
+                return "ERROR: GROUP BY ARGUMENT NOT SELECTED";
+            }
             query += " GROUP BY " + this.groupByClause;
         }
         if (!Objects.equals(this.orderByClause, "")) {

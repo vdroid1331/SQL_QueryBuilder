@@ -7,7 +7,7 @@ public class Main {
                 .from("user")
                 .where("age > 10")
                 .orderBy("name")
-                .groupBy("name, age")
+                .groupBy("user.name")
                 .joinOn("courses", "id", "user_id");
 
         System.out.println(SelectQuery.build());
