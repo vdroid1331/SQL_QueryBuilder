@@ -12,6 +12,9 @@ public class Main {
 
         System.out.println(SelectQuery.build());
 
+        GenericUpdateQuery UpdateQuery = (GenericUpdateQuery) new GenericUpdateQuery().update("user").set("name = 'Rick'").where("age > 10");
+        System.out.println(UpdateQuery.build());
+
 
     }
 }
