@@ -320,7 +320,7 @@ public class GenericCreateQuery implements SQLCreateQuery {
             return "ERROR: NO TABLE NAME PROVIDED, CANNOT CREATE A TABLE WITHOUT NAME";
         }
 
-        StringBuilder query = new StringBuilder("CREATE TABLE " + this.tableName + " (\n\tid INT NOT NULL AUTO_INCREMENT,");
+        StringBuilder query = new StringBuilder("CREATE TABLE " + this.tableName + " (\n\tid INT NOT NULL AUTO_INCREMENT,\n");
 
         // Add INTEGER fields
         appendFieldsToQuery(query, this.intFields);
@@ -372,12 +372,13 @@ public class GenericCreateQuery implements SQLCreateQuery {
                 } else {
                     foreignKeyId = reference;
                 }
+                String nullableBehaviour = reference.contains(" NOT NULL") ? " NOT NULL" : "";
 
-                query.append("    ").append("FOREIGN KEY ").append("(").append(foreignKeyId).append("_id) REFERENCES ").append(foreignKeyId).append("(").append(foreignKeyId).append("_id)").append(",\n");
+                query.append("    ").append("FOREIGN KEY ").append("(").append(foreignKeyId).append("_id) REFERENCES ").append(foreignKeyId).append("(").append(foreignKeyId).append("_id)").append(nullableBehaviour).append(",\n");
             }
         }
 
-        query.append("\n);");
+        query.append(");");
         return query.toString();
     }
 

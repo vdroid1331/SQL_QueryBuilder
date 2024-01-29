@@ -2,7 +2,9 @@ public class PGSQLCreateQuery extends GenericCreateQuery {
     @Override
     public String build() {
         String genericQuery = super.build();
+
         genericQuery = genericQuery.replace("id INT NOT NULL AUTO_INCREMENT", "id SERIAL PRIMARY KEY");
+        if (this.foreignKeys == null) return genericQuery;
         for (String reference: this.foreignKeys) {
             String foreignKeyId = "";
             if (reference.contains(" NOT NULL")) {

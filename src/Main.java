@@ -17,6 +17,8 @@ public class Main {
 
 
         DB pgsql = new DB("PGSQL");
+
+        System.out.println(pgsql.createQuery.create("users").addIntField("age").addVariableCharField("name", 20).build());
         System.out.println(pgsql.selectQuery.select(new String[]{"user.name", "courses.title"})
                 .from("user")
                 .where("age > 10")
