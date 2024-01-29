@@ -6,6 +6,8 @@ public class QueryTests {
             GenericDeleteQueryTest.runTests();
             GenericSelectQueryTest.runTests();
             DBTest.runTests();
+            GenericInsertQueryTest.runTests();
+            GenericDropQueryTest.runTests();
         } catch (Exception e) {
             throw new Exception("Tests failed.");
         }

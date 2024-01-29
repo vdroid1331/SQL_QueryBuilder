@@ -9,6 +9,8 @@ public class DB {
     public GenericUpdateQuery updateQuery;
     public GenericDeleteQuery deleteQuery;
     public  GenericCreateQuery createQuery;
+    public GenericInsertQuery insertQuery;
+    public GenericDropQuery dropQuery;
 
     public DB(String DBType) {
         if (isValidDBType(DBType)) {
@@ -36,6 +38,8 @@ public class DB {
                 this.selectQuery = new PGSQLSelectQuery();
                 this.deleteQuery = new PGSQLDeleteQuery();
                 this.createQuery = new PGSQLCreateQuery();
+                this.insertQuery = new PGSQLInsertQuery();
+                this.dropQuery = new PGSQLDropQuery();
 
                 System.out.println("Initializing PostgreSQL database");
                 break;
@@ -44,6 +48,8 @@ public class DB {
                 this.selectQuery = new MySQLSelectQuery();
                 this.deleteQuery = new MySQLDeleteQuery();
                 this.createQuery = new MySQLCreateQuery();
+                this.insertQuery = new MySQLInsertQuery();
+                this.dropQuery = new MySQLDropQuery();
 
                 System.out.println("Initializing MySQL database");
                 break;

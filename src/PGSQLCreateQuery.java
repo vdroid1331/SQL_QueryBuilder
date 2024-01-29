@@ -16,6 +16,7 @@ public class PGSQLCreateQuery extends GenericCreateQuery {
             String toReplace = foreignKeyId + "_id INT REFERENCES " + foreignKeyId + "(" + foreignKeyId + ")";
             genericQuery = genericQuery.replace(toSearch, toReplace);
         }
+        this.clearQuery();
 
         return genericQuery;
     }

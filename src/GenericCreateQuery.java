@@ -19,6 +19,44 @@ public class GenericCreateQuery implements SQLCreateQuery {
     protected ArrayList<String> timeFields;
     protected ArrayList<String> timestampFields;
 
+    GenericCreateQuery() {
+        this.tableName = null;
+        this.intFields = null;
+        this.smallIntFields = null;
+        this.bigIntFields = null;
+        this.doubleFields = null;
+        this.floatFields = null;
+        this.textFields = null;
+        this.charFields = null;
+        this.varCharFields = null;
+        this.foreignKeys = null;
+        this.booleanFields = null;
+        this.enumFields = null;
+        this.JSONFields = null;
+        this.dateFields = null;
+        this.timestampFields = null;
+        this.timeFields = null;
+    }
+
+    protected void clearQuery() {
+        this.tableName = null;
+        this.intFields = null;
+        this.smallIntFields = null;
+        this.bigIntFields = null;
+        this.doubleFields = null;
+        this.floatFields = null;
+        this.textFields = null;
+        this.charFields = null;
+        this.varCharFields = null;
+        this.foreignKeys = null;
+        this.booleanFields = null;
+        this.enumFields = null;
+        this.JSONFields = null;
+        this.dateFields = null;
+        this.timestampFields = null;
+        this.timeFields = null;
+    }
+
 
 
     @Override
