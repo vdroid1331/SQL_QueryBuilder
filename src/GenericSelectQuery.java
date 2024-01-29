@@ -10,6 +10,7 @@ public class GenericSelectQuery implements SQLSelectQuery{
     protected String joinedTable;
     protected String tableOneField;
     protected String tableTwoField;
+    protected boolean isLeftJoin;
 
 
     public GenericSelectQuery() {
@@ -21,6 +22,7 @@ public class GenericSelectQuery implements SQLSelectQuery{
         this.joinedTable = "";
         this.tableOneField = "";
         this.tableTwoField  = "";
+        this.isLeftJoin = false;
     }
     @Override
     public SQLSelectQuery select(String fields) {
@@ -104,6 +106,20 @@ public class GenericSelectQuery implements SQLSelectQuery{
     }
 
     @Override
+    public SQLSelectQuery fromAndLeftJoin(String joinTableOne, String joinTableTwo, String firstTableField, String secondTableField) {
+        this.isLeftJoin = true;
+        this.fromAndJoin(joinTableOne, joinTableTwo, firstTableField, secondTableField);
+        return this;
+    }
+
+    @Override
+    public SQLSelectQuery leftJoinOn(String joinTableTwo, String firstTableField, String secondTableField) {
+        this.isLeftJoin = true;
+        this.joinOn(joinTableTwo, firstTableField, secondTableField);
+        return this;
+    }
+
+    @Override
     public String build() {
         String query = "SELECT ";
         if (Objects.equals(this.selectClause, "")) {
@@ -116,7 +132,8 @@ public class GenericSelectQuery implements SQLSelectQuery{
         }
         query += " FROM " + this.fromClause;
         if (!Objects.equals(this.joinedTable, "") && ((!Objects.equals(this.tableOneField, "")) && (!Objects.equals(this.tableTwoField, "")))) {
-            query += " INNER JOIN " + this.joinedTable + " ON " + this.fromClause + "." + this.tableOneField + " = " + this.joinedTable + "." + this.tableTwoField;
+            String joinType = this.isLeftJoin ? "LEFT" : "INNER";
+            query += " " + joinType +  " JOIN " + this.joinedTable + " ON " + this.fromClause + "." + this.tableOneField + " = " + this.joinedTable + "." + this.tableTwoField;
         } else {
             return "ERROR: INVALID JOIN";
         }

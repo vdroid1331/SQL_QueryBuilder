@@ -33,7 +33,7 @@ public class Main {
                 .where("age < 10")
                 .orderBy("name")
                 .groupBy("user.name")
-                .joinOn("courses", "id", "user_id").build());
+                .leftJoinOn("courses", "id", "user_id").build());
 
 
 //        DB sqlite = new DB("sqlite");

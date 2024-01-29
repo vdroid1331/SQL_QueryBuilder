@@ -9,11 +9,16 @@ public interface SQLSelectQuery {
     SQLSelectQuery groupBy(String fields);
     SQLSelectQuery groupBy(String[] fields);
 
+
     // for usage without the from method
     SQLSelectQuery fromAndJoin(String joinTableOne, String joinTableTwo, String firstTableField, String secondTableField);
 
     // to be used with the from method
     SQLSelectQuery joinOn(String joinTableTwo, String firstTableField, String secondTableField);
+
+    SQLSelectQuery fromAndLeftJoin(String joinTableOne, String joinTableTwo, String firstTableField, String secondTableField);
+
+    SQLSelectQuery leftJoinOn(String joinTableTwo, String firstTableField, String secondTableField);
 
     String build();
     void clearQuery();

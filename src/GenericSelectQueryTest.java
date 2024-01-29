@@ -1,5 +1,4 @@
 public class GenericSelectQueryTest {
-
     public static void main(String[] args) throws Exception {
         try {
             runTests();
@@ -16,7 +15,7 @@ public class GenericSelectQueryTest {
             testSelectWithOrderBy();
             testSelectWithGroupBy();
             testSelectWithJoin();
-            testClearQuery();
+            testSelectWithLeftJoin();
             testClearQuery();
         } catch (Exception e) {
             throw new Exception("Generic Select Query Test failed.");
@@ -69,6 +68,14 @@ public class GenericSelectQueryTest {
 
         // Check if the SELECT query with JOIN clause is correct
         assert "SELECT column1, column2 FROM table1 INNER JOIN table2 ON table1.column1 = table2.column2 ERROR: GROUP BY ARGUMENT NOT SELECTED".equals(result) : "Test case testSelectWithJoin failed";
+    }
+
+    private static void testSelectWithLeftJoin() {
+        GenericSelectQuery query = new GenericSelectQuery();
+        String result = query.select("column1, column2").fromAndLeftJoin("table1", "table2", "column1", "column2").build();
+
+        // Check if the SELECT query with LEFT JOIN clause is correct
+        assert "SELECT column1, column2 FROM table1 LEFT JOIN table2 ON table1.column1 = table2.column2 ERROR: GROUP BY ARGUMENT NOT SELECTED".equals(result) : "Test case testSelectWithLeftJoin failed";
     }
 
     private static void testClearQuery() {
