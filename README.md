@@ -68,7 +68,7 @@ CREATE TABLE users (
     age INT,
     name VARCHAR(20),
 );
-INSERT INTO users (name, age) (name, age);
+INSERT INTO users (name, age) VALUES ('Vinayak', '22');
 SELECT user.name, courses.title FROM user JOIN courses ON user.id = courses.user_id WHERE age > 10 GROUP BY user.name ORDER BY name;
 SELECT user.name, courses.title FROM user JOIN courses ON user.id = courses.user_id GROUP BY user.name ORDER BY name;
 SELECT user.name, courses.title FROM user LEFT JOIN courses ON user.id = courses.user_id WHERE age < 10 GROUP BY user.name ORDER BY name;

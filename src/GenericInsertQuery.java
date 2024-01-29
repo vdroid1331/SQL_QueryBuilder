@@ -60,7 +60,7 @@ public class GenericInsertQuery implements  SQLInsertQuery {
         if (this.insertValues.split(", ").length != this.insertFields.split(", ").length) {
             return "ERROR: NUMBER OF FIELDS AND NUMBER OF VALUES PROVIDED DO NOT MATCH";
         }
-        String query =  "INSERT INTO " + this.tableName + " " + this.insertFields + " " + this.insertFields + ";";
+        String query =  "INSERT INTO " + this.tableName + " " + this.insertFields + " VALUES " + this.insertValues + ";";
         this.clearQuery();
         return query;
     }
