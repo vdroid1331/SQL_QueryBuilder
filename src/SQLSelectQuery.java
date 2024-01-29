@@ -16,4 +16,5 @@ public interface SQLSelectQuery {
     SQLSelectQuery joinOn(String joinTableTwo, String firstTableField, String secondTableField);
 
     String build();
+    void clearQuery();
 }

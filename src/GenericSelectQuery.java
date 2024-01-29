@@ -17,6 +17,7 @@ public class GenericSelectQuery implements SQLSelectQuery{
         this.fromClause = "";
         this.whereCondition = "";
         this.orderByClause = "";
+        this.groupByClause = "";
         this.joinedTable = "";
         this.tableOneField = "";
         this.tableTwoField  = "";
@@ -135,7 +136,20 @@ public class GenericSelectQuery implements SQLSelectQuery{
             query += " ORDER BY " + this.orderByClause;
         }
         query += ";";
+        this.clearQuery();
         return query;
+    }
+
+    @Override
+    public void clearQuery() {
+        this.selectClause = "";
+        this.fromClause = "";
+        this.whereCondition = "";
+        this.orderByClause = "";
+        this.groupByClause = "";
+        this.joinedTable = "";
+        this.tableOneField = "";
+        this.tableTwoField  = "";
     }
 
 }

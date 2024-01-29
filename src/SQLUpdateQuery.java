@@ -3,4 +3,5 @@ public interface SQLUpdateQuery {
     SQLUpdateQuery set(String setString);
     SQLUpdateQuery where(String condition);
     String build();
+    void clearQuery();
 }

@@ -4,6 +4,12 @@ public class GenericDeleteQuery implements SQLDeleteQuery{
 
     protected String tableName;
     protected String condition;
+
+    GenericDeleteQuery() {
+        this.tableName = "";
+        this.condition = "";
+    }
+
     @Override
     public SQLDeleteQuery where(String condition) {
         this.condition = condition;
@@ -18,14 +24,23 @@ public class GenericDeleteQuery implements SQLDeleteQuery{
 
     @Override
     public String build() {
+        String query = "";
         if (Objects.equals(this.tableName, "")) {
             return "ERROR: NO TABLE NAME PROVIDED TO DROP";
         } else {
             if (Objects.equals(this.condition, "")) {
-                return "DELETE * FROM " + this.tableName + ";";
+                query = "DELETE * FROM " + this.tableName + ";";
             } else {
-                return "DELETE FROM " + this.tableName + " WHERE " + this.condition + ";";
+                query = "DELETE FROM " + this.tableName + " WHERE " + this.condition + ";";
             }
         }
+        this.clearQuery();
+        return query;
+    }
+
+    @Override
+    public void clearQuery() {
+        this.tableName = "";
+        this.condition = "";
     }
 }
